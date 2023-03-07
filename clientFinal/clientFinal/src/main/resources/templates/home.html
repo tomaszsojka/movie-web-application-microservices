@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en"
+    xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head>
+    <meta charset="UTF-8">
+    <title>FilmsApp | Film catalogue management application</title>
+    <link th:href="@{/css/bootstrap.min.css}" rel="stylesheet">
+</head>
+<body>
+
+<div class="container">
+    <h1 class="text-center">Manage</h1>
+    <hr>
+    <div class="row">
+        <div class="col-md-4">
+            <div class="card mb-4 box-shadow">
+                <div class="card-body">
+                    <h3 class="card-title">Films list</h3>
+                    <a class="page-link" th:href="@{/cfilms/list}">
+                        Films list
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-4">
+            <div class="card mb-4 box-shadow">
+                <div class="card-body">
+                    <h3 class="card-title">Search films</h3>
+                    <a class="page-link" th:href="@{/cfilms/search}">
+                        Search films
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-4">
+            <div class="card mb-4 box-shadow">
+                <div class="card-body">
+                    <h3 class="card-title">List actors</h3>
+                    <a class="page-link" th:href="@{/cactors/list}">
+                        List of the actors
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-4">
+            <div class="card mb-4 box-shadow">
+                <div class="card-body">
+                    <h3 class="card-title">Search actors</h3>
+                    <a class="page-link" th:href="@{/cactors/search}">
+                        Search actors
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-4">
+            <div class="card mb-4 box-shadow" sec:authorize="hasRole('ROLE_ADMIN')">
+                <div class="card-body">
+                    <h3 class="card-title">List users</h3>
+                    <a class="page-link" th:href="@{/cusers/list}">
+                        List of users
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-4">
+            <div class="card mb-4 box-shadow" sec:authorize="hasRole('ROLE_ADMIN')">
+                <div class="card-body">
+                    <h3 class="card-title">Search users</h3>
+                    <a class="page-link" th:href="@{/cusers/search}">
+                        Search users
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-4">
+            <div class="card mb-4 box-shadow"  sec:authorize="hasRole('ROLE_ADMIN')">
+                <div class="card-body">
+                    <h3 class="card-title">List reviews</h3>
+                    <a class="page-link" th:href="@{/creviews/list}">
+                        List of the film reviews
+                    </a>
+                </div>
+            </div>
+        </div>
+
+    </div>
+    <hr>
+    <a class="btn btn-primary" role="button" th:href="@{/logout}">Logout</a>
+</div>
+
+<!-- Bootstrap core JavaScript
+================================================== -->
+<!-- Placed at the end of the document so the pages load faster -->
+<script th:src="@{/js/bootstrap.min.js}"></script>
+
+</body>
+</html>

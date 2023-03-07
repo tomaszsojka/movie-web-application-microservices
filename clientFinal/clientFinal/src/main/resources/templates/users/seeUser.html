@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>FilmsApp | Film catalogue management application</title>
+    <link th:href="@{/css/bootstrap.min.css}" rel="stylesheet">
+</head>
+<body>
+
+<div class="container py-4">
+    <div class="card bg-light">
+        <div class="card-header" th:text="${title}"></div>
+        <div class="card-body">
+
+            <ul class="list-group">
+                <li class="list-group-item active" th:text="${user.idUser}"></li>
+                <li class="list-group-item" th:text="${user.username}"></li>
+                <li class="list-group-item" th:text="${user.password}"></li>
+                <li class="list-group-item" th:text="${user.email}"></li>
+                <li class="list-group-item" th:text="${user.roles}"></li>
+            </ul>
+
+        </div>
+    </div>
+    <hr>
+    <a class="btn btn-primary" role="button" th:href="@{/cusers/list}">Go back to the list of users</a>
+</div>
+
+</body>
+</html>

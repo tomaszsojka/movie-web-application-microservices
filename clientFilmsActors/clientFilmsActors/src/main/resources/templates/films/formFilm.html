@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>FilmsApp | Film catalogue management application</title>
+    <link th:href="@{/css/bootstrap.min.css}" rel="stylesheet">
+</head>
+<body>
+
+<div class="container">
+    <h2 th:text="${title}"
+        class="text-secondary border border-success border-top-0 border-left-0 border-right-0"></h2>
+    <form th:action="@{/cfilms/save/}" method="post" th:object="${film}" enctype="multipart/form-data">
+        <div th:if="${#fields.hasErrors('*')}" class='alert alert-danger' role='alert'>
+            Please correct the following errors:
+            <ul>
+                <li th:each="err : ${#fields.errors('*')}" th:text="${err}"/>
+            </ul>
+        </div>
+        <div class="mb-3">
+            <label for="title" class="form-label">Title</label>
+            <input type="text" class="form-control" th:field="*{title}" id="title" name="title"
+                   placeholder="Set title of the film" required="required">
+        </div>
+        <div class="mb-3">
+            <label for="year" class="form-label">Year</label>
+            <input type="number" class="form-control" th:field="*{year}" id="year" name="year"
+                   placeholder="Set the year in which the movie was out" required="required">
+        </div>
+        <div class="mb-3">
+            <label for="duration" class="form-label">Duration</label>
+            <input type="number" class="form-control" th:field="*{duration}" id="duration" name="duration"
+                   placeholder="Set the duration of the movie in minutes" required="required">
+        </div>
+        <div class="mb-3">
+            <label for="country" class="form-label">Country</label>
+            <input type="text" class="form-control" th:field="*{country}" id="country" name="country"
+                   placeholder="Set the country where the movie was produced" required="required">
+        </div>
+        <div class="mb-3">
+            <label for="direction" class="form-label">Direction</label>
+            <input type="text" class="form-control" th:field="*{direction}" id="direction" name="direction"
+                   placeholder="Set the direction of the movie" required="required">
+        </div>
+
+        <div class="mb-3">
+            <select class="form-select" th:field="*{genre}" name="genre" id="genre">
+                <option th:value="action">action</option>
+                <option th:value="crime">crime</option>
+                <option th:value="comedy">comedy</option>
+                <option th:value="drama">drama</option>
+                <option th:value="fantasy">fantasy</option>
+                <option th:value="horror">horror</option>
+                <option th:value="thriller">thriller</option>
+            </select>
+        </div>
+
+        <div class="mb-3">
+            <label for="synopsis" class="form-label">Synopsis</label>
+            <input type="text" class="form-control" th:field="*{synopsis}" id="synopsis" name="synopsis"
+                   placeholder="Set the synopsis of the movie" required="required">
+        </div>
+
+        <img th:if="${film.image != null && #strings.length(film.image) > 0}" class="img-thumbnail rounded float-left"
+             style="max-width: 25%;" th:src="${film.image}"
+             th:alt="${film.image}" />
+
+        <div class="mb-3">
+            <label for="image" class="form-label">Image URL</label>
+            <input type="text" class="form-control" th:field="*{image}" id="image" name="image"
+                   placeholder="Set the URL leading to the image of the movie" required="required">
+        </div>
+
+        <button type="submit" class="btn btn-dark">Save</button>
+        <input type="hidden" th:field="*{idFilm}"/>
+<!--        <input type="hidden" th:field="*{image}"/>-->
+    </form>
+    <hr>
+    <a class="btn btn-primary" role="button" th:href="@{/cfilms/}">Go to the main page</a>
+</div>
+
+<!-- Bootstrap core JavaScript
+================================================== -->
+<!-- Placed at the end of the document so the pages load faster -->
+<script th:src="@{/js/bootstrap.min.js}"></script>
+
+</body>
+</html>

@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head>
+    <meta charset="UTF-8">
+    <title>FilmsApp | Film catalogue management application</title>
+    <link th:href="@{/css/bootstrap.min.css}" rel="stylesheet">
+</head>
+<body>
+
+<div class="container">
+
+    <div class="card">
+        <h2 th:text="${title}" class="card-header"></h2>
+        <div class="card-body">
+            <div th:if="${msg != null}" class='alert alert-success' th:text="${msg}" role='alert'></div>
+            <h4 class="card-title" sec:authorize="hasRole('ROLE_ADMIN')">
+                <a th:href="@{/cfilms/new}" class="btn btn-primary btn-xs">Create a new film</a>
+            </h4>
+
+            <table class="table table-hover">
+                <thead class="thead-light">
+                <tr>
+                    <th scope="col">Id</th>
+                    <th scope="col">Title</th>
+                    <th scope="col">Year</th>
+                    <th scope="col">Duration</th>
+                    <th scope="col">Country</th>
+                    <th scope="col">Direction</th>
+                    <th scope="col">Genre</th>
+                    <th scope="col">Synopsis</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr th:each="film : ${listFilms}">
+                    <td> <a class="btn btn-primary btn-xs" th:href="@{/cfilms/see/} + ${film.idFilm}" th:text="${film.idFilm}"></a></td>
+                    <td th:text="${film.title}"></td>
+                    <td th:text="${film.year}"></td>
+                    <td th:text="${film.duration} + min"></td>
+                    <td th:text="${film.country}"></td>
+                    <td th:text="${film.direction}"></td>
+                    <td th:text="${film.genre}"></td>
+                    <td th:text="${film.synopsis}"></td>
+                    <td>
+                        <div sec:authorize="hasRole('ROLE_ADMIN')">
+                            <a th:href="@{/cfilms/edit/{id}  (id=${film.idFilm})  }" th:text="'edit'" class="btn btn-success btn-sm" role="button" title="Edit film."><i class="fas fa-pencil-alt" aria-hidden="true"></i></a>
+                            <a th:href="@{/cfilms/delete/{id}  (id=${film.idFilm})   }" th:text="'delete'" onclick="return confirm('Are you sure?')" class="btn btn-danger btn-sm" role="button" title="Delete film."><i class="fas fa-trash" aria-hidden="true"></i></a>
+                        </div>
+                        <div sec:authorize="hasRole('ROLE_USER')">
+                            <a th:href="@{/cfilms/add-review/{id}  (id=${film.idFilm})   }" th:text="'add review'" class="btn btn-success btn-sm" role="button" title="Add review."><i class="fas fa-pencil-alt" aria-hidden="true"></i></a>
+                        </div>
+                    </td>
+                </tr>
+
+                </tbody>
+            </table>
+
+            <nav th:replace="paginator-nav :: paginator"></nav>
+
+        </div>
+    </div>
+    <hr>
+    <a class="btn btn-primary" role="button" th:href="@{/cfilms/}">Go to the main page</a>
+</div> <!-- /container -->
+
+<!-- Bootstrap core JavaScript
+================================================== -->
+<!-- Placed at the end of the document so the pages load faster -->
+<script th:src="@{/js/bootstrap.min.js}"></script>
+
+</body>
+</html>

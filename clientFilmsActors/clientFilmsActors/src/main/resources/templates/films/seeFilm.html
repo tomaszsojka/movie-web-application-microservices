@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>FilmsApp | Film catalogue management application</title>
+    <link th:href="@{/css/bootstrap.min.css}" rel="stylesheet">
+</head>
+<body>
+
+<div class="container py-4">
+    <div class="card bg-light">
+        <div class="card-header" th:text="${title}"></div>
+        <div class="card-body">
+
+<!--            <img th:if="${#strings.length(film.image) > 0}" class="img-thumbnail rounded float-left"-->
+<!--                 style="max-width: 25%;" th:src="@{'/cfilms/uploads/' + ${film.image}}"-->
+<!--                 th:alt="${film.image}" />-->
+            <img th:if="${#strings.length(film.image) > 0}" class="img-thumbnail rounded float-left"
+                 style="max-width: 25%;" th:src="${film.image}"
+                 th:alt="${film.image}" />
+
+            <ul class="list-group">
+                <li class="list-group-item active" th:text="${film.idFilm}"></li>
+                <li class="list-group-item" th:text="${film.title}"></li>
+                <li class="list-group-item" th:text="${film.year}"></li>
+                <li class="list-group-item" th:text="${film.duration} + min"></li>
+                <li class="list-group-item" th:text="${film.country}"></li>
+                <li class="list-group-item" th:text="${film.direction}"></li>
+                <li class="list-group-item" th:text="${film.genre}"></li>
+                <li class="list-group-item" th:text="${film.synopsis}"></li>
+            </ul>
+
+        </div>
+    </div>
+    <hr>
+    <a class="btn btn-primary" role="button" th:href="@{/cfilms/list}">Go back to the list of films</a>
+</div>
+
+</body>
+</html>

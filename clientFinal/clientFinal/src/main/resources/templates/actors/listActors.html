@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head>
+    <meta charset="UTF-8">
+    <title>FilmsApp | Film catalogue management application</title>
+    <link th:href="@{/css/bootstrap.min.css}" rel="stylesheet">
+</head>
+<body>
+
+<div class="container">
+
+    <div class="card">
+        <h2 th:text="${title}" class="card-header"></h2>
+        <div class="card-body">
+            <div th:if="${msg != null}" class='alert alert-success' th:text="${msg}" role='alert'></div>
+            <h4 class="card-title" sec:authorize="hasRole('ROLE_ADMIN')">
+                <a th:href="@{/cactors/new}" class="btn btn-primary btn-xs">Create a new actor</a>
+            </h4>
+
+            <table class="table table-hover">
+                <thead class="thead-light">
+                <tr>
+                    <th scope="col">Id</th>
+                    <th scope="col">Name</th>
+                    <th scope="col">Birthdate</th>
+                    <th scope="col">Country</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr th:each="actor : ${listActors}">
+                    <td> <a class="btn btn-primary btn-xs" th:href="@{/cactors/see/} + ${actor.idActor}" th:text="${actor.idActor}"></a></td>
+                    <td th:text="${actor.name}"></td>
+                    <td th:text="${actor.birthdate}"></td>
+                    <td th:text="${actor.country}"></td>
+                    <td sec:authorize="hasRole('ROLE_ADMIN')">
+                        <a th:href="@{/cactors/edit/{id}  (id=${actor.idActor})  }" th:text="'edit'" class="btn btn-success btn-sm" role="button" title="Edit actor."><i class="fas fa-pencil-alt" aria-hidden="true"></i></a>
+                        <a th:href="@{/cactors/delete/{id}  (id=${actor.idActor})   }" th:text="'delete'" onclick="return confirm('Are you sure?')" class="btn btn-danger btn-sm" role="button" title="Delete actor."><i class="fas fa-trash" aria-hidden="true"></i></a>
+                    </td>
+                </tr>
+
+                </tbody>
+            </table>
+
+            <nav th:replace="paginator-nav :: paginator"></nav>
+
+        </div>
+    </div>
+    <hr>
+    <a class="btn btn-primary" role="button" th:href="@{/cfilms/}">Go to the main page</a>
+</div> <!-- /container -->
+
+<!-- Bootstrap core JavaScript
+================================================== -->
+<!-- Placed at the end of the document so the pages load faster -->
+<script th:src="@{/js/bootstrap.min.js}"></script>
+
+</body>
+</html>

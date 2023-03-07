@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>FilmsApp | Film catalogue management application</title>
+    <link th:href="@{/css/bootstrap.min.css}" rel="stylesheet">
+</head>
+<body>
+
+<div class="container px-5 py-5">
+    <h1 class="text-center">Register new user</h1>
+    <h2 th:text="${title}"
+        class="text-secondary border border-success border-top-0 border-left-0 border-right-0"></h2>
+    <form th:action="@{/cusers/register}" method="post" th:object="${user}">
+        <div th:if="${#fields.hasErrors('*')}" class='alert alert-danger' role='alert'>
+            Please correct the following errors:
+            <ul>
+                <li th:each="err : ${#fields.errors('*')}" th:text="${err}"/>
+            </ul>
+        </div>
+        <div class="mb-3">
+            <label for="username" class="form-label">Username</label>
+            <input type="text" class="form-control" th:field="*{username}" id="username" name="username"
+                   placeholder="Pass the name of the user" required="required">
+        </div>
+        <div class="mb-3">
+            <label for="password" class="form-label">Password</label>
+            <input type="text" class="form-control" th:field="*{password}" id="password" name="password"
+                   placeholder="Pass the password" required="required">
+        </div>
+        <div class="mb-3">
+            <label for="email" class="form-label">Email</label>
+            <input type="text" class="form-control" th:field="*{email}" id="email" name="email"
+                   placeholder="Pass email of the user" required="required">
+        </div>
+        <button type="submit" class="btn btn-dark">Register</button>
+    </form>
+
+    <hr>
+    <a class="btn btn-primary" role="button" th:href="@{/login/}">Go to the login page</a>
+
+</div>
+</div>
+
+<script th:src="@{/js/bootstrap.min.js}"></script>
+
+</body>
+</html>

@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>FilmsApp | Film catalogue management application</title>
+    <link th:href="@{/css/bootstrap.min.css}" rel="stylesheet">
+</head>
+<body>
+<div class="container">
+    <h2 class="text-secondary border border-success border-top-0 border-left-0 border-right-0">Searching Films</h2>
+    <form th:action="@{/cfilms/title}" method="get">
+        <div class="mb-3">
+            <label for="title" class="form-label">Title</label>
+            <input type="text" class="form-control" id="title" name="title"
+                   placeholder="Type the name of the film">
+        </div>
+        <button type="submit" class="btn btn-primary">Search by title</button>
+    </form>
+    <hr>
+    <form th:action="@{/cfilms/genre}" method="get">
+        <div class="mb-3">
+            <label for="genre" class="form-label">Genre</label>
+            <select class="form-select" name="genre" id="genre">
+                <option th:value="action">action</option>
+                <option th:value="crime">crime</option>
+                <option th:value="comedy">comedy</option>
+                <option th:value="drama">drama</option>
+                <option th:value="fantasy">fantasy</option>
+                <option th:value="horror">horror</option>
+                <option th:value="thriller">thriller</option>
+            </select>
+        </div>
+        <button type="submit" class="btn btn-primary">Find by genre</button>
+    </form>
+    <hr>
+    <form th:action="@{/cfilms/actor}" method="get">
+        <div class="mb-3">
+            <label for="actorname" class="form-label">Actor's name</label>
+            <input type="text" class="form-control" id="actorname" name="actorname"
+                   placeholder="Type the name of the actor">
+        </div>
+        <button type="submit" class="btn btn-primary">Search by actor's name.</button>
+    </form>
+    <form th:action="@{/cfilms/direction}" method="get">
+        <div class="mb-3">
+            <label for="direction" class="form-label">Director's name</label>
+            <input type="text" class="form-control" id="direction" name="direction"
+                   placeholder="Type the name of the director">
+        </div>
+        <button type="submit" class="btn btn-primary">Search by director's name.</button>
+    </form>
+    <hr>
+    <a class="btn btn-primary" role="button" th:href="@{/cfilms}">Go to the main page</a>
+</div>
+
+<!-- Bootstrap core JavaScript
+================================================== -->
+<!-- Placed at the end of the document so the pages load faster -->
+<script th:src="@{/js/bootstrap.min.js}"></script>
+
+</body>
+</html>
