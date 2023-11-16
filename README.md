@@ -11,6 +11,26 @@ The application uses 5 separate spring boot projects. The usersReviews and films
 
 In addition, the db folder contains the files that were used to create both databases.
 
+<!-- SCEENSHOTS -->
+## 2. Key functionalities
+
+| ![2 separate databases](https://github.com/tomaszsojka/movie-web-application-microservices/blob/main/doc/screenshots/filmsActorsModel.png?raw=true) ![spring Eureka](https://github.com/tomaszsojka/movie-web-application-microservices/blob/main/doc/screenshots/usersReviewsModel.png?raw=true)|
+|:--:|
+|  |
+| *Two separate databases that are used by different microservices (in compliance to principle of decentralization)* |
+
+
+| ![API routing](https://github.com/tomaszsojka/movie-web-application-microservices/blob/main/doc/screenshots/routingAPI.png?raw=true) |
+|:--:|
+| *API routing* |
+| ![spring Eureka](https://github.com/tomaszsojka/movie-web-application-microservices/blob/main/doc/screenshots/springEureka.png?raw=true) |
+| *All 3 services tracked by spring Eureka Discovery Client* |
+
+
+| ![admin page](https://github.com/tomaszsojka/movie-web-application-microservices/blob/main/doc/screenshots/adminPage.png?raw=true) |
+|:--:|
+| *Admin page (example view from the client service)* |
+
 <!-- FRAMEWORKS -->
 ## 3. Frameworks
 
